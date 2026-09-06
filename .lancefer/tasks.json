@@ -1,75 +1,78 @@
 {
-  "milestone": "M01_ARCHITECTURE_ET_SPECIFICATIONS",
+  "milestone": "M02_DISCOVERY_AND_PAIRING",
   "status": "COMPLETED",
+  "completed_milestones": [
+    "M01_ARCHITECTURE_ET_SPECIFICATIONS",
+    "M02_DISCOVERY_AND_PAIRING"
+  ],
   "tasks": [
     {
-      "id": "TASK-001",
-      "name": "Spécification Produit & Golden Path FastDrop",
-      "assigned_to": "lancefer_product_owner",
-      "status": "VERIFIED",
+      "id": "TASK-005",
+      "name": "Moteur de Découverte Réseau Locale (DiscoveryEngine)",
+      "assigned_to": "lancefer_system_architect",
+      "status": "COMPLETED",
       "dependencies": [],
       "target_files": [
-        "docs/specifications/fastdrop_product_brief.md"
+        "src/discovery/discovery_engine.js"
       ],
       "acceptance_criteria": [
-        "Définition précise du problème et des utilisateurs",
-        "Périmètre MVP vs Hors-Périmètre validé",
-        "Golden Path documenté étape par étape",
-        "Spécifications des formats supportés (fichiers volumineux, dossiers, photos, vidéos)"
-      ],
-      "verified_date": "2026-09-06T05:35:00Z"
+        "Annonce périodique de présence (Beacons UDP)",
+        "Détection dynamique des pairs avec IP, port, OS et nom d'appareil",
+        "Gestion de TTL et suppression/marquage hors-ligne des pairs inactifs",
+        "Support de recherche active (Probe) et réponse directe",
+        "Support de vérification manuelle par IP directe"
+      ]
     },
     {
-      "id": "TASK-002",
-      "name": "ADR-001 Choix Technologique & Stack FastDrop",
-      "assigned_to": "lancefer_system_architect",
-      "status": "VERIFIED",
-      "dependencies": ["TASK-001"],
-      "target_files": [
-        "docs/architecture/adr-001-protocol-and-stack.md"
-      ],
-      "acceptance_criteria": [
-        "Comparatif rigoureux des options réseau (TCP vs QUIC vs WebSockets)",
-        "Comparatif découverte d'appareils (mDNS vs UDP broadcast vs QR Code)",
-        "Choix argumenté des stacks Desktop et Mobile",
-        "Isolation du Transfer Core indépendamment des UIs"
-      ],
-      "verified_date": "2026-09-06T05:35:10Z"
-    },
-    {
-      "id": "TASK-003",
-      "name": "Spécification du Protocole Réseau FastDrop v1",
-      "assigned_to": "lancefer_system_architect",
-      "status": "VERIFIED",
-      "dependencies": ["TASK-002"],
-      "target_files": [
-        "docs/architecture/fastdrop_protocol_v1.md"
-      ],
-      "acceptance_criteria": [
-        "Définition des trames et structures de contrôle",
-        "Handshake et négociation de capacités",
-        "Spécification des chunks, offsets et acquittements",
-        "Procédure formelle de reprise (Resume)"
-      ],
-      "verified_date": "2026-09-06T05:35:25Z"
-    },
-    {
-      "id": "TASK-004",
-      "name": "Modèle de Sécurité & Appairage",
+      "id": "TASK-006",
+      "name": "Moteur d'Appairage Sécurisé & SAS (PairingEngine)",
       "assigned_to": "lancefer_security_auditor",
-      "status": "VERIFIED",
-      "dependencies": ["TASK-003"],
+      "status": "COMPLETED",
+      "dependencies": ["TASK-005"],
       "target_files": [
-        "docs/architecture/security_model.md"
+        "src/security/pairing_engine.js"
       ],
       "acceptance_criteria": [
-        "Mécanisme d'appairage par code PIN ou QR Code",
-        "Chiffrement de session et échange de clés de session",
-        "Protection absolue contre le Path Traversal",
-        "Règles de validation des noms et chemins de fichiers"
+        "Dérivation d'un code PIN court à 6 chiffres (SAS) via HKDF-SHA256",
+        "Génération de payload pour QR Code (IP, port, token temporaire)",
+        "Handshake d'appairage sécurisé avec validation mutuelle",
+        "Gestion des rejets, timeouts et codes incorrects"
+      ]
+    },
+    {
+      "id": "TASK-007",
+      "name": "Magasin des Appareils de Confiance (TrustStore)",
+      "assigned_to": "lancefer_security_auditor",
+      "status": "COMPLETED",
+      "dependencies": ["TASK-006"],
+      "target_files": [
+        "src/security/trust_store.js"
       ],
-      "verified_date": "2026-09-06T05:35:35Z"
+      "acceptance_criteria": [
+        "Persistance sécurisée des appareils approuvés",
+        "Vérification instantanée de statut de confiance (isTrusted)",
+        "Révocation et suppression d'un appareil",
+        "Isolation sans fuite de secrets cryptographiques"
+      ]
+    },
+    {
+      "id": "TASK-008",
+      "name": "Validation & Tests E2E Découverte et Appairage",
+      "assigned_to": "lancefer_qa_engineer",
+      "status": "COMPLETED",
+      "dependencies": ["TASK-005", "TASK-006", "TASK-007"],
+      "target_files": [
+        "test/discovery.test.js",
+        "test/pairing.test.js"
+      ],
+      "acceptance_criteria": [
+        "100% des tests automatisés passants",
+        "Preuve de découverte bidirectionnelle entre 2 pairs simulés",
+        "Preuve d'expiration TTL sur arrêt de beacon",
+        "Preuve d'appairage réussi avec code PIN 6 chiffres et mise en confiance",
+        "Preuve de rejet si code PIN erroné"
+      ]
     }
   ],
-  "next_milestone": "M02_CORE_TRANSFER_ENGINE"
+  "next_milestone": "M03_INTEGRATED_E2E_PLATFORMS"
 }
