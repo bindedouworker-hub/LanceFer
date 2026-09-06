@@ -1,0 +1,21 @@
+{
+  "name": "FastDrop",
+  "codename": "LanceFer-Pilot-01",
+  "version": "0.1.0-alpha",
+  "description": "Application de transfert direct ultra-rapide de fichiers entre smartphone Android et ordinateur (Windows/Linux/macOS) en réseau local sans cloud.",
+  "factory": "Programme LanceFer V4",
+  "repository": "f:/Projet 1/LanceFer",
+  "priorities": [
+    "Vitesse",
+    "Fiabilité",
+    "Simplicité",
+    "Sécurité",
+    "Compatibilité",
+    "Design"
+  ],
+  "targets": [
+    "Android (Mobile)",
+    "Windows (Desktop)",
+    "Linux / macOS (Extensibilité)"
+  ]
+}

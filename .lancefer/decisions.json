@@ -1,0 +1,12 @@
+{
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "title": "Sélection de la Stack Technique et du Protocole Réseau FastDrop v1",
+      "status": "PROPOSED",
+      "date": "2026-09-06",
+      "author": "lancefer_system_architect",
+      "summary": "Transfer Core découplé avec transport hybride TCP stream / mDNS local, et format de protocole binaire léger avec négociation JSON."
+    }
+  ]
+}

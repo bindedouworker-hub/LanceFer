@@ -1,0 +1,75 @@
+{
+  "milestone": "M01_ARCHITECTURE_ET_SPECIFICATIONS",
+  "status": "COMPLETED",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "name": "Spécification Produit & Golden Path FastDrop",
+      "assigned_to": "lancefer_product_owner",
+      "status": "VERIFIED",
+      "dependencies": [],
+      "target_files": [
+        "docs/specifications/fastdrop_product_brief.md"
+      ],
+      "acceptance_criteria": [
+        "Définition précise du problème et des utilisateurs",
+        "Périmètre MVP vs Hors-Périmètre validé",
+        "Golden Path documenté étape par étape",
+        "Spécifications des formats supportés (fichiers volumineux, dossiers, photos, vidéos)"
+      ],
+      "verified_date": "2026-09-06T05:35:00Z"
+    },
+    {
+      "id": "TASK-002",
+      "name": "ADR-001 Choix Technologique & Stack FastDrop",
+      "assigned_to": "lancefer_system_architect",
+      "status": "VERIFIED",
+      "dependencies": ["TASK-001"],
+      "target_files": [
+        "docs/architecture/adr-001-protocol-and-stack.md"
+      ],
+      "acceptance_criteria": [
+        "Comparatif rigoureux des options réseau (TCP vs QUIC vs WebSockets)",
+        "Comparatif découverte d'appareils (mDNS vs UDP broadcast vs QR Code)",
+        "Choix argumenté des stacks Desktop et Mobile",
+        "Isolation du Transfer Core indépendamment des UIs"
+      ],
+      "verified_date": "2026-09-06T05:35:10Z"
+    },
+    {
+      "id": "TASK-003",
+      "name": "Spécification du Protocole Réseau FastDrop v1",
+      "assigned_to": "lancefer_system_architect",
+      "status": "VERIFIED",
+      "dependencies": ["TASK-002"],
+      "target_files": [
+        "docs/architecture/fastdrop_protocol_v1.md"
+      ],
+      "acceptance_criteria": [
+        "Définition des trames et structures de contrôle",
+        "Handshake et négociation de capacités",
+        "Spécification des chunks, offsets et acquittements",
+        "Procédure formelle de reprise (Resume)"
+      ],
+      "verified_date": "2026-09-06T05:35:25Z"
+    },
+    {
+      "id": "TASK-004",
+      "name": "Modèle de Sécurité & Appairage",
+      "assigned_to": "lancefer_security_auditor",
+      "status": "VERIFIED",
+      "dependencies": ["TASK-003"],
+      "target_files": [
+        "docs/architecture/security_model.md"
+      ],
+      "acceptance_criteria": [
+        "Mécanisme d'appairage par code PIN ou QR Code",
+        "Chiffrement de session et échange de clés de session",
+        "Protection absolue contre le Path Traversal",
+        "Règles de validation des noms et chemins de fichiers"
+      ],
+      "verified_date": "2026-09-06T05:35:35Z"
+    }
+  ],
+  "next_milestone": "M02_CORE_TRANSFER_ENGINE"
+}

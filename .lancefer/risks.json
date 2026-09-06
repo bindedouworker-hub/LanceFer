@@ -1,0 +1,22 @@
+{
+  "risks": [
+    {
+      "id": "RISK-001",
+      "category": "Réseau",
+      "description": "Isolement client / AP Isolation sur certains routeurs Wi-Fi publics ou d'entreprise empêchant la communication directe entre pairs.",
+      "mitigation": "Support d'un mode Point d'accès (Hotspot Wi-Fi direct) et affichage d'un diagnostic clair dans l'UI."
+    },
+    {
+      "id": "RISK-002",
+      "category": "Système d'exploitation",
+      "description": "Fermeture agressive par Android des processus d'arrière-plan lors du transfert de fichiers très volumineux (>5 Go).",
+      "mitigation": "Utilisation impérative d'un Foreground Service avec notification permanente et WakeLock/WifiLock."
+    },
+    {
+      "id": "RISK-003",
+      "category": "Sécurité",
+      "description": "Risque d'attaque Path Traversal (fichiers nommés ../.. ou caractères interdits sous Windows).",
+      "mitigation": "Sanitisation stricte des noms de fichiers à la réception et isolation dans un répertoire cible prédéfini."
+    }
+  ]
+}
