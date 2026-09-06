@@ -1,0 +1,22 @@
+{
+  "checkpoint_id": "CHECKPOINT_M01",
+  "name": "Transfer Core & Architecture Foundation Validated",
+  "git_commit": "b427ae8",
+  "timestamp": "2026-09-06T05:53:12Z",
+  "tests_passed": 16,
+  "tests_failed": 0,
+  "benchmarks": {
+    "10MB": "59.17 MB/s",
+    "50MB": "59.88 MB/s"
+  },
+  "go_condition_met": true,
+  "verified_features": [
+    "Protocole FDSP v1 encodage et décodage",
+    "Streaming par blocs (Chunks de 512 Ko à 1 Mo)",
+    "Contrôle de contre-pression (Backpressure)",
+    "Reprise automatique après coupure réseau (Resume Engine)",
+    "Protection anti-Path Traversal",
+    "Validation d'intégrité SHA-256 en flux continu"
+  ],
+  "next_target": "PHASE_2_NETWORK_DISCOVERY_AND_PAIRING"
+}
